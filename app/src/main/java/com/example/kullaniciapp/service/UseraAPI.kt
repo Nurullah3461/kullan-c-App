@@ -8,4 +8,7 @@ interface UseraAPI {
 
     @GET("atilsamancioglu/UsersJSONPlaceHolder/refs/heads/main/users.json")
     suspend fun getData() : List<User>
+
+    @GET("atilsamancioglu/UsersJSONPlaceHolder/refs/heads/main/users.json")
+    suspend fun getSingleUser() : List<User>
 }
