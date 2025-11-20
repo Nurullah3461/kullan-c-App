@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,8 +35,9 @@ fun UserList(userList: List<User>,navController: NavController) {
             Modifier.fillMaxSize()
 
     ) {
-        items(userList) {
-            UserRow(user = it,navController = navController)
+        itemsIndexed(userList) {index,user ->
+
+            UserRow(user = user,navController = navController, currentIndex = index)
 
 
         }
@@ -43,12 +45,12 @@ fun UserList(userList: List<User>,navController: NavController) {
 }
 
 @Composable
-fun UserRow(user: User,navController: NavController) {
+fun UserRow(user: User,navController: NavController,currentIndex : Int) {
     Column(
         modifier = Modifier.fillMaxWidth()
             .border(BorderStroke(2.dp, MaterialTheme.colorScheme.tertiaryContainer))
             .clickable{
-                navController.navigate("detay_ekrani/${Gson().toJson(user)}")
+                navController.navigate("detay_ekrani/${currentIndex}")
             }
             .background(color = MaterialTheme.colorScheme.primaryContainer )
             .padding(10.dp)
